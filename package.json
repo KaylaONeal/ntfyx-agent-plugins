@@ -1,0 +1,14 @@
+{
+  "name": "ntfyx-agent-plugins",
+  "version": "0.1.0",
+  "description": "Ntfyx for coding agents: encrypted notifications and phone approvals for Claude Code, Codex and pi.",
+  "license": "MIT",
+  "homepage": "https://ntfyx.me/docs/agents/",
+  "repository": "github:KaylaONeal/ntfyx-agent-plugins",
+  "keywords": ["pi-package", "ntfyx", "notifications", "approval", "mcp", "claude-code", "codex"],
+  "files": ["pi", "skills", "README.md", "LICENSE"],
+  "pi": {
+    "extensions": ["./pi/extension.ts"],
+    "skills": ["./skills"]
+  }
+}

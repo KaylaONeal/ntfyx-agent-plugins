@@ -1,0 +1,27 @@
+{
+  "name": "ntfyx",
+  "version": "0.1.0",
+  "description": "End-to-end encrypted notifications and phone approvals for coding agents: get notified when work finishes and approve tool calls from your iPhone.",
+  "author": { "name": "Ntfyx", "url": "https://ntfyx.me" },
+  "homepage": "https://ntfyx.me/docs/agents/",
+  "repository": "https://github.com/KaylaONeal/ntfyx-agent-plugins",
+  "license": "MIT",
+  "keywords": ["notifications", "approval", "iphone", "e2ee", "mcp", "codex"],
+  "extensions": {
+    "com.openai": {
+      "hooks": "./hooks/codex.json",
+      "interface": {
+        "displayName": "Ntfyx",
+        "shortDescription": "Encrypted agent notifications and phone approvals",
+        "longDescription": "Get an encrypted notification on your iPhone when a turn ends, and approve or deny shell commands and file changes from your phone. Requires the ntfyx CLI and a connected iPhone.",
+        "developerName": "Ntfyx",
+        "category": "Productivity",
+        "capabilities": ["Interactive"],
+        "websiteURL": "https://ntfyx.me",
+        "privacyPolicyURL": "https://ntfyx.me/privacy/",
+        "termsOfServiceURL": "https://ntfyx.me/terms/",
+        "logo": "./assets/logo.svg"
+      }
+    }
+  }
+}

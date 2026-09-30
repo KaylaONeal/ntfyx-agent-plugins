@@ -1,0 +1,12 @@
+{
+  "name": "ntfyx",
+  "displayName": "Ntfyx",
+  "version": "0.1.0",
+  "description": "End-to-end encrypted notifications and phone approvals for Claude Code. Requires the ntfyx CLI and a connected iPhone.",
+  "author": { "name": "Ntfyx", "url": "https://ntfyx.me" },
+  "homepage": "https://ntfyx.me/docs/agents/",
+  "repository": "https://github.com/KaylaONeal/ntfyx-agent-plugins",
+  "license": "MIT",
+  "keywords": ["notifications", "approval", "iphone", "e2ee", "mcp"],
+  "hooks": "./hooks/claude.json"
+}

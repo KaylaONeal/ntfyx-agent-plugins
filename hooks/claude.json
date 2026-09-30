@@ -1,0 +1,61 @@
+{
+  "hooks": {
+    "PermissionRequest": [
+      {
+        "matcher": "Bash|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "command -v ntfyx >/dev/null 2>&1 || exit 0; exec ntfyx hook permission",
+            "timeout": 100
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt|elicitation_dialog",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "command -v ntfyx >/dev/null 2>&1 || exit 0; exec ntfyx hook notification",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "command -v ntfyx >/dev/null 2>&1 || exit 0; exec ntfyx hook stop",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "command -v ntfyx >/dev/null 2>&1 || exit 0; exec ntfyx hook failure",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "command -v ntfyx >/dev/null 2>&1 || exit 0; exec ntfyx hook session-end",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

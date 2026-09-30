@@ -1,0 +1,27 @@
+{
+  "hooks": {
+    "PermissionRequest": [
+      {
+        "matcher": "Bash|apply_patch|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "command -v ntfyx >/dev/null 2>&1 || exit 0; exec ntfyx hook permission --host codex",
+            "timeout": 100
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "command -v ntfyx >/dev/null 2>&1 || exit 0; exec ntfyx hook stop --host codex",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

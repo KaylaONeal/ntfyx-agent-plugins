@@ -1,0 +1,13 @@
+{
+  "name": "ntfyx",
+  "owner": { "name": "Ntfyx", "url": "https://ntfyx.me" },
+  "metadata": { "description": "Encrypted notifications and phone approvals for coding agents." },
+  "plugins": [
+    {
+      "name": "ntfyx",
+      "source": "./",
+      "description": "Encrypted notifications and phone approvals from your iPhone.",
+      "category": "productivity"
+    }
+  ]
+}
