@@ -56,6 +56,18 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/question.sh\"",
+            "timeout": 510
+          }
+        ]
+      }
     ]
   }
 }

@@ -1,11 +1,19 @@
 {
   "name": "ntfyx",
-  "interface": { "displayName": "Ntfyx" },
+  "interface": {
+    "displayName": "Ntfyx \u00b7 Phone replies"
+  },
   "plugins": [
     {
       "name": "ntfyx",
-      "source": { "source": "local", "path": "./" },
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
       "category": "Productivity"
     }
   ]

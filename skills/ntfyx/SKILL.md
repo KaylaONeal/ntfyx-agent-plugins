@@ -1,43 +1,41 @@
 ---
 name: ntfyx
-description: Send the user an end-to-end encrypted notification on their iPhone, or ask them a question and wait for a verified answer, using the ntfyx CLI. Use when long work finishes, when a job fails, or before an irreversible step (deploy, publish, delete, payment) that needs the user's explicit decision.
+description: Send encrypted notifications and collect verified phone replies with Ntfyx. Use for task completion, failures, clarification questions, choices, missing information, and decisions when the user has enabled phone replies. Respect an explicit request to answer in the current chat.
 ---
 
-# Ntfyx: notify the user or ask before acting
+# Ntfyx phone replies
 
-`ntfyx` delivers encrypted messages to the user's iPhone (and an optional phone-authorized Web Inbox). Check that it is installed and connected with `ntfyx doctor` before relying on it. If it is missing, tell the user to install it from https://ntfyx.me/install.md. Do not install it yourself unless they asked you to.
+Ntfyx connects this computer to the user's iPhone or Android phone. Use the available `ntfyx_ask` MCP tool for questions that need the user's input: requirements, choices, missing information, and approvals that are actually needed. Preserve existing authorization; installing this plugin does not require asking again before every action. If the user chooses the current chat, use that channel.
 
-## Notify when work finishes
+Check `ntfyx doctor` when connection status is unknown. If not installed or paired, explain the prerequisite and link https://ntfyx.me/install/. The user must scan and authorize their own connection. Never upload pairing links or credentials. No cloud MCP endpoint is required: encryption and answer verification run locally.
 
-```sh
-ntfyx send "Tests passed on main" --title "CI finished"
-```
+## Ask and receive an answer
 
-Keep messages short and factual. Never include secrets, tokens, private keys or full logs.
+- Use `ntfyx_ask` with `type: "choice"` for buttons, `allow_text: true` for an alternative, `type: "text"` for free input, or `type: "confirm"` for a specific Allow/Deny decision. Include enough context in the original message.
+- Set `wait_seconds` up to 45. If still pending, keep the same `request_id` and call `ntfyx_result` with `consume: true` and `wait_seconds: 45`. Do not create another question to retry a wait.
+- Continue only after `status: "answered"` and `consumption.claim_acquired: true`; read the actual response. For confirmation, only `response.value: "allow"` permits the described action. A text or choice answer does not confer unrelated execution permission.
+- Denial, expiration, cancellation, already-consumed results, verification errors and timeouts are not consent. Cancel a pending request with `ntfyx_cancel` when the user takes over locally. If the phone route fails, explain the failure before asking in the current chat.
 
-## Ask before an irreversible step
-
-```sh
-ntfyx ask "Publish v1.2.0 to npm?" --allow-deny --wait 90s && npm publish
-```
-
-The synchronous `ask` verifies the signed answer and claims it once before exiting 0. Continue **only** on exit code 0.
-
-| Exit code | Meaning | What to do |
-| --- | --- | --- |
-| 0 | Verified Allow, claim acquired | Continue with exactly the step you asked about |
-| 10 | Denied | Stop and report the denial |
-| 14 | Wait timed out | Stop; do not treat silence as approval |
-| 15 | Already consumed | Stop; never rerun the step |
-| 20–26 | Not connected, network or verification problem | Stop and tell the user |
-
-Other question types:
+CLI equivalents (CLI 0.1.3+):
 
 ```sh
-ntfyx ask "Which environment?" --choice staging=Staging --choice production=Production --wait 90s --json
+ntfyx ask "Which environment?" --choice staging=Staging --choice production=Production --allow-text --wait 120s --json
 ntfyx ask "What should I check next?" --text --wait 120s --json
+ntfyx ask "Deploy this build to staging?" --allow-deny --wait 120s --json
 ```
 
-Never turn a timeout, cancellation or error into approval. An approval covers only the single action you described.
+Synchronous CLI ask verifies and claims the answer. Exit 0 means a completed answer (and Allow for a confirm); read choice/text from JSON. Exit 10 is Deny; 11–15 are expired/cancelled/replaced/timeout/consumed. Other nonzero exits are failures.
 
-With the MCP server enabled, the same operations are available as the tools `ntfyx_send`, `ntfyx_ask`, `ntfyx_result` and `ntfyx_cancel`.
+## Keep a task in one conversation
+
+Pass the host's actual session ID as `session_id` to each send/ask and use a short task title as `session_name`. CLI: `--session-id ID --session-name NAME`. Retain it when resuming that session. If the host does not expose an ID, create one unique ID for this conversation and reuse it during this conversation; do not derive it from the working directory. Without an ID each message opens its own conversation. These tools do not export the host transcript or accept unsolicited remote commands.
+
+## Completion notifications
+
+Use `ntfyx_send` or `ntfyx send "Tests passed" --title "Build finished"` for an authorized completion/failure notification. Avoid a second completion notification if the host's Stop hook already sends it. Keep notifications factual and omit secrets and full logs.
+
+## Native host behavior
+
+Claude Code's plugin bridges `AskUserQuestion` through PreToolUse. Single-choice questions use buttons plus free text; multiple questions arrive in order; multiple selections currently use a text reply listing option numbers. When that native hook is handling a question, do not send a duplicate MCP question.
+
+Codex uses these MCP tools for phone questions. Installing this plugin does not intercept Codex's native `request_user_input`. Native tool-execution approval hooks are separate and limited to the documented verified host/version/platform combinations. Review Codex hooks through `/hooks`; preserve sandbox and tool permission settings. Use either this plugin or `ntfyx setup` for a host, to avoid duplicate hooks.

@@ -1,13 +1,19 @@
 {
   "name": "ntfyx",
-  "owner": { "name": "Ntfyx", "url": "https://ntfyx.me" },
-  "metadata": { "description": "Encrypted notifications and phone approvals for coding agents." },
+  "owner": {
+    "name": "Ntfyx",
+    "url": "https://ntfyx.me"
+  },
+  "metadata": {
+    "description": "Private phone replies and task conversations for Claude Code and Codex."
+  },
   "plugins": [
     {
       "name": "ntfyx",
       "source": "./",
-      "description": "Encrypted notifications and phone approvals from your iPhone.",
-      "category": "productivity"
+      "description": "Answer your agent from your phone: encrypted choices, text replies and Session conversations.",
+      "category": "productivity",
+      "version": "0.2.0"
     }
   ]
 }

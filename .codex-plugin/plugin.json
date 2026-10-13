@@ -1,7 +1,7 @@
 {
   "name": "ntfyx",
-  "version": "0.1.0",
-  "description": "End-to-end encrypted notifications and phone approvals for coding agents: get notified when work finishes and approve tool calls from your iPhone.",
+  "version": "0.2.0",
+  "description": "Encrypted phone replies and Session conversations for coding agents. Get completion alerts, answer choices or text on iPhone and Android, and continue with verified replies.",
   "author": {
     "name": "Ntfyx",
     "url": "https://ntfyx.me"
@@ -22,8 +22,8 @@
   "hooks": "./hooks/codex.json",
   "interface": {
     "displayName": "Ntfyx",
-    "shortDescription": "Encrypted agent notifications and phone approvals",
-    "longDescription": "Get an encrypted notification on your iPhone when a turn ends, and approve or deny shell commands and file changes from your phone. Requires the ntfyx CLI and a connected iPhone.",
+    "shortDescription": "Phone replies for your coding agent",
+    "longDescription": "Keep a task’s updates and questions in one encrypted conversation. Answer with buttons or text on iPhone, Android or an authorized Web Inbox. Includes local MCP and a phone-first question skill. Claude Code also bridges AskUserQuestion; Codex native question prompts are not intercepted. Requires Ntfyx CLI 0.1.3+ and a paired phone. Tool execution approvals have a separate compatibility matrix.",
     "developerName": "Ntfyx",
     "category": "Productivity",
     "capabilities": [
@@ -32,6 +32,11 @@
     "websiteURL": "https://ntfyx.me",
     "privacyPolicyURL": "https://ntfyx.me/privacy/",
     "termsOfServiceURL": "https://ntfyx.me/terms/",
-    "logo": "./assets/logo.svg"
+    "logo": "./assets/logo.svg",
+    "supportURL": "https://ntfyx.me/support/",
+    "defaultPrompt": [
+      "Ask me a test question on my phone with Ntfyx.",
+      "Keep this task’s updates and questions in one Ntfyx Session."
+    ]
   }
 }
