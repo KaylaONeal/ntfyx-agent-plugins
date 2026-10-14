@@ -1,6 +1,6 @@
-# Ntfyx — answer your coding agent from your phone
+# Ntfyx — AI Agent Notifications & Phone Replies
 
-Keep one task's updates, questions and replies in one encrypted conversation. Get a completion alert, tap an option below the original message, or type a reply on iPhone, Android or your phone-authorized Web Inbox. Your computer verifies the signed answer before continuing.
+Ntfyx sends task notifications and questions from Claude Code, Codex and scripts to your phone. Keep one task's updates, questions and replies in one encrypted conversation. Get a completion alert, tap an option below the original message, or type a reply on iPhone, Android or your phone-authorized Web Inbox. Your computer verifies the signed answer before continuing.
 
 **Plugin 0.2.0 · requires Ntfyx CLI 0.1.3+ · macOS and Linux.**
 
@@ -91,10 +91,16 @@ The plugin uses your installed local CLI; it never includes credentials or downl
 
 Deny, timeout, cancellation, verification failure and already-consumed answers are never treated as consent. A verified answer covers only its original request. [Support](https://ntfyx.me/support/).
 
+## License and service dependency
+
+The plugin configuration, hooks and skills in this repository are MIT licensed. The Ntfyx application, companion CLI and hosted relay are separate products with their own license and service terms. This repository does not publish the application's core source or provide a supported self-hosting package. Install the signed CLI and pair the phone app before using the local MCP server; it is not a standalone hosted connector.
+
 ## 中文说明
 
-Ntfyx 把 Agent 的任务通知、问题和回复放进同一个加密会话。手机上直接点选按钮或引用问题输入，电脑校验签名后继续。支持 iPhone、Android 和手机授权的 Web 收件箱。
+Ntfyx 是 AI Agent 任务通知与手机回复工具，把 Claude Code、Codex 和脚本的任务通知、问题和回复放进同一个加密会话。手机上直接点选按钮或引用问题输入，电脑校验签名后继续。支持 iPhone、Android 和手机授权的 Web 收件箱。
 
 上面的一键命令会完成 CLI 安装、扫码连接与 Agent 配置；也可以选择插件市场安装，两种方式每个 Agent 选一种。Claude 原生 AskUserQuestion 已加入问答桥接；Codex 通过 MCP 主动提问，暂不接管原生提问。执行权限审批有独立的平台和版本范围。公开 GitHub 市场可安装，不代表已被官方公共目录收录。
 
 [安装与说明](https://ntfyx.me/install/) · [中文会话指南](https://ntfyx.me/zh/docs/sessions/) · [中文插件说明](https://ntfyx.me/zh/docs/agent-plugins/)
+
+本仓库的插件配置、Hook 与 Skill 采用 MIT 许可；App、配套 CLI 和托管中继遵循独立许可与服务条款。这里不提供应用核心源码或受支持的自托管发行。
