@@ -2,7 +2,7 @@
 
 Ntfyx sends task notifications and questions from Claude Code, Codex and scripts to your phone. Keep one task's updates, questions and replies in one encrypted conversation. Get a completion alert, tap an option below the original message, or type a reply on iPhone, Android or your phone-authorized Web Inbox. Your computer verifies the signed answer before continuing.
 
-**Plugin 0.2.0 · requires Ntfyx CLI 0.1.3+ · macOS and Linux.**
+**Plugin 0.2.0 · requires Ntfyx CLI 0.1.3+ (0.1.5+ for Apple silicon native approvals) · macOS and Linux.**
 
 [Website](https://ntfyx.me/) · [Installation](https://ntfyx.me/install/) · [Agent compatibility](https://ntfyx.me/docs/agents/) · [Session guide](https://ntfyx.me/docs/sessions/) · [Privacy](https://ntfyx.me/privacy/)
 
@@ -62,11 +62,11 @@ These commands add the publicly hosted **Ntfyx marketplace**. They do not mean t
 | Phone questions and verified replies | MCP + phone-reply skill | MCP + phone-reply skill | MCP; host configuration required |
 | Native questions | `AskUserQuestion` PreToolUse bridge | Native `request_user_input` is not intercepted | Not integrated |
 | Session conversations | Hook session ID; explicit MCP/CLI ID | Hook session ID; explicit MCP/CLI ID | Explicit MCP/CLI ID |
-| Native tool execution approval | Bash/Edit/Write; verified Linux x64, Claude 2.1.283+ | Bash/apply_patch; verified Linux x64, Codex 0.158+ interactive | pi Bash is opt-in; other hosts not verified |
+| Native tool execution approval | Bash/Edit/Write; Linux x64 (Claude 2.1.283 / 2.1.284), Apple silicon Mac (2.1.303, CLI 0.1.5+) | Bash/apply_patch; Linux x64 (Codex 0.158.0), Apple silicon Mac (0.163.0, CLI 0.1.5+); interactive TUI + /hooks trust | pi Bash is opt-in; other hosts not verified |
 
 The question bridge is distinct from execution approval. Claude single-choice questions have buttons plus a free-text alternative. A batch of up to four questions arrives in order. Multi-select currently uses a text reply with option numbers (such as `1,3`) or a custom answer. Only a complete set of verified, uniquely claimed answers is returned to the original waiting call. Timeout, cancellation, unsupported payloads or an ended session leave the native prompt in charge. Set `NTFYX_NATIVE_QUESTIONS=off` to disable this bridge.
 
-Native questions have encrypted integration coverage; real-host/device acceptance is recorded separately from manifest validation. Native execution approval remains subject to the [published compatibility matrix](https://ntfyx.me/docs/agents/). macOS native execution approvals fall back to the terminal. `codex exec` does not run the interactive approval flow.
+Native questions have encrypted integration coverage; real-host/device acceptance is recorded separately from manifest validation. Native execution approval remains subject to the [published compatibility matrix](https://ntfyx.me/docs/agents/). Apple silicon Mac native execution approvals were verified with Claude Code 2.1.303 and Codex 0.163.0 and require CLI 0.1.5+. Intel Mac native approvals remain unverified and fall back to the terminal. Claude interactive terminal-choice precedence remains unverified. `codex exec` does not run the interactive approval flow.
 
 ## One task, one conversation
 
