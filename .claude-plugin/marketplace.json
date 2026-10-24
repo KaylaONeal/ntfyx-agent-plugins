@@ -13,7 +13,7 @@
       "source": "./",
       "description": "Answer your agent from your phone: encrypted choices, text replies and Session conversations.",
       "category": "productivity",
-      "version": "0.2.0"
+      "version": "0.2.1"
     }
   ]
 }

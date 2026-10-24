@@ -2,14 +2,18 @@
 
 Ntfyx sends task notifications and questions from Claude Code, Codex and scripts to your phone. Keep one task's updates, questions and replies in one encrypted conversation. Get a completion alert, tap an option below the original message, or type a reply on iPhone, Android or your phone-authorized Web Inbox. Your computer verifies the signed answer before continuing.
 
-**Plugin 0.2.0 · requires Ntfyx CLI 0.1.3+ (0.1.5+ for Apple silicon native approvals) · macOS and Linux.**
+**Plugin 0.2.1 · requires Ntfyx CLI 0.4.1+ · macOS and Linux.**
 
 [Website](https://ntfyx.me/) · [Installation](https://ntfyx.me/install/) · [Agent compatibility](https://ntfyx.me/docs/agents/) · [Session guide](https://ntfyx.me/docs/sessions/) · [Privacy](https://ntfyx.me/privacy/)
 
 
-CLI 0.4.1 also supports Windows x64/ARM64. On Windows use the [direct CLI setup or local MCP guide](https://ntfyx.me/docs/agent-plugins/); plugin 0.2.0 uses POSIX shell hooks. Claude Code automatic hooks require a supported host version; Codex on Windows uses explicit MCP questions. Native permission approvals keep their separate platform limits.
+CLI 0.4.1 also supports Windows x64/ARM64. On Windows use the [direct CLI setup or local MCP guide](https://ntfyx.me/docs/agent-plugins/); plugin 0.2.1 uses POSIX shell hooks. Claude Code automatic hooks require a supported host version; Codex on Windows uses explicit MCP questions. Native permission approvals keep their separate platform limits.
 
 [AI agent notifications](https://ntfyx.me/docs/agent-notifications/) · [中文：Agent 通知工具](https://ntfyx.me/zh/docs/agent-notifications/) · [A runnable question-and-reply example](https://ntfyx.me/docs/agent-reply-walkthrough/) · [Compare phone workflows](https://ntfyx.me/docs/coding-agents-on-your-phone/)
+
+Plugin 0.2.1 connects Claude Code’s `SessionStart` lifecycle, so resuming an ended conversation can send fresh phone questions while old requests remain cancelled. Upgrade the CLI to 0.4.1 or later before updating the plugin. This fixes the marketplace plugin; the CLI’s direct setup already included the lifecycle hook.
+
+For Codex, use Ntfyx MCP or CLI for decisions, choices and clarification questions. Its native `request_user_input` and `request_user_input_async` prompts are not automatically forwarded by the execution-permission hooks. Tell Codex once: **“Use Ntfyx for questions that need my decision; keep explanations in this chat.”** A working completion notification alone does not verify phone questions; complete the test question after installation.
 
 ## One command to get started
 

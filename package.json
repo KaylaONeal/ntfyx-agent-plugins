@@ -1,6 +1,6 @@
 {
   "name": "ntfyx-agent-plugins",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Encrypted phone replies and Session conversations for coding agents. Get completion alerts, answer choices or text on iPhone and Android, and continue with verified replies.",
   "license": "MIT",
   "homepage": "https://ntfyx.me/docs/agents/",
