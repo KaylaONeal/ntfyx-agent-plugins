@@ -6,6 +6,11 @@ Ntfyx sends task notifications and questions from Claude Code, Codex and scripts
 
 [Website](https://ntfyx.me/) · [Installation](https://ntfyx.me/install/) · [Agent compatibility](https://ntfyx.me/docs/agents/) · [Session guide](https://ntfyx.me/docs/sessions/) · [Privacy](https://ntfyx.me/privacy/)
 
+
+CLI 0.4.1 also supports Windows x64/ARM64. On Windows use the [direct CLI setup or local MCP guide](https://ntfyx.me/docs/agent-plugins/); plugin 0.2.0 uses POSIX shell hooks. Claude Code automatic hooks require a supported host version; Codex on Windows uses explicit MCP questions. Native permission approvals keep their separate platform limits.
+
+[AI agent notifications](https://ntfyx.me/docs/agent-notifications/) · [中文：Agent 通知工具](https://ntfyx.me/zh/docs/agent-notifications/) · [A runnable question-and-reply example](https://ntfyx.me/docs/agent-reply-walkthrough/) · [Compare phone workflows](https://ntfyx.me/docs/coding-agents-on-your-phone/)
+
 ## One command to get started
 
 Choose your agent. The installer verifies the CLI signature, guides you through phone pairing, then installs the MCP configuration, hooks and phone-reply skill. Restart your agent afterwards.
