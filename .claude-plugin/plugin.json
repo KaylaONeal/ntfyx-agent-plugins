@@ -1,7 +1,7 @@
 {
   "name": "ntfyx",
-  "version": "0.2.1",
-  "description": "Encrypted phone replies and Session conversations for coding agents. Get completion alerts, answer choices or text on iPhone and Android, and continue with verified replies.",
+  "version": "0.3.0",
+  "description": "Encrypted phone replies and rich task reports for coding agents. Send Markdown, metrics, tables and native charts, then continue with verified replies.",
   "author": {
     "name": "Ntfyx",
     "url": "https://ntfyx.me"

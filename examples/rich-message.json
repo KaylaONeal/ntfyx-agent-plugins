@@ -1,0 +1,19 @@
+{
+  "title": "服务巡检结果",
+  "summary": "检查完成：全部服务正常，平均响应 182 ms。",
+  "content": {
+    "version": 1,
+    "format": "blocks",
+    "blocks": [
+      { "type": "markdown", "text": "## 本次巡检\n- 检查 API 与 Worker\n- 所有检查已完成" },
+      { "type": "callout", "tone": "success", "title": "运行正常", "text": "未发现需要人工处理的异常。" },
+      { "type": "metrics", "items": [
+        { "label": "成功率", "value": 99.8, "unit": "%", "tone": "success" },
+        { "label": "平均响应", "value": 182, "unit": "ms" }
+      ] },
+      { "type": "table", "columns": ["服务", "状态", "响应 ms"], "rows": [["API", "正常", 182], ["Worker", "正常", 95]] },
+      { "type": "progress", "label": "已完成检查", "value": 24, "max": 24 },
+      { "type": "chart", "kind": "line", "title": "响应趋势", "unit": "ms", "labels": ["09:00", "10:00", "11:00"], "series": [{ "name": "API", "values": [210, 190, 182] }] }
+    ]
+  }
+}

@@ -2,16 +2,18 @@
 
 Ntfyx sends task notifications and questions from Claude Code, Codex and scripts to your phone. Keep one task's updates, questions and replies in one encrypted conversation. Get a completion alert, tap an option below the original message, or type a reply on iPhone, Android or your phone-authorized Web Inbox. Your computer verifies the signed answer before continuing.
 
-**Plugin 0.2.1 · requires Ntfyx CLI 0.4.1+ · macOS and Linux.**
+**Plugin 0.3.0 · requires Ntfyx CLI 0.5.0+ · macOS and Linux.**
 
 [Website](https://ntfyx.me/) · [Installation](https://ntfyx.me/install/) · [Agent compatibility](https://ntfyx.me/docs/agents/) · [Session guide](https://ntfyx.me/docs/sessions/) · [Privacy](https://ntfyx.me/privacy/)
 
 
-CLI 0.4.1 also supports Windows x64/ARM64. On Windows use the [direct CLI setup or local MCP guide](https://ntfyx.me/docs/agent-plugins/); plugin 0.2.1 uses POSIX shell hooks. Claude Code automatic hooks require a supported host version; Codex on Windows uses explicit MCP questions. Native permission approvals keep their separate platform limits.
+CLI 0.5.0 also supports Windows x64/ARM64. On Windows use the [direct CLI setup or local MCP guide](https://ntfyx.me/docs/agent-plugins/); plugin 0.3.0 uses POSIX shell hooks. Claude Code automatic hooks require a supported host version; Codex on Windows uses explicit MCP questions. Native permission approvals keep their separate platform limits.
 
 [AI agent notifications](https://ntfyx.me/docs/agent-notifications/) · [中文：Agent 通知工具](https://ntfyx.me/zh/docs/agent-notifications/) · [A runnable question-and-reply example](https://ntfyx.me/docs/agent-reply-walkthrough/) · [Compare phone workflows](https://ntfyx.me/docs/coding-agents-on-your-phone/)
 
-Plugin 0.2.1 connects Claude Code’s `SessionStart` lifecycle, so resuming an ended conversation can send fresh phone questions while old requests remain cancelled. Upgrade the CLI to 0.4.1 or later before updating the plugin. This fixes the marketplace plugin; the CLI’s direct setup already included the lifecycle hook.
+Plugin 0.3.0 teaches agents to choose plain text, Markdown or native content blocks, validate complex reports locally, and send them through CLI or MCP. Rich content requires Ntfyx 1.7.0+ on iPhone/Android or an updated Web/Chrome receiver. Upgrade the CLI to 0.5.0 or later before updating the plugin.
+
+The `SessionStart` lifecycle added in plugin 0.2.1 is retained: resumed conversations can send fresh phone questions while old requests remain cancelled. Rich messages do not change approval verification or one-time answer claiming.
 
 For Codex, use Ntfyx MCP or CLI for decisions, choices and clarification questions. Its native `request_user_input` and `request_user_input_async` prompts are not automatically forwarded by the execution-permission hooks. Tell Codex once: **“Use Ntfyx for questions that need my decision; keep explanations in this chat.”** A working completion notification alone does not verify phone questions; complete the test question after installation.
 
@@ -85,6 +87,36 @@ ntfyx ask "What should I check next?" --text --session-id release-24
 ```
 
 MCP uses `session_id` and `session_name`. Without an ID, each message starts its own conversation. Sessions do not grant remote-shell access or publish your full agent transcript.
+
+## Rich task reports
+
+Use ordinary text for short notifications, Markdown for reports, and structured
+blocks for callouts, metrics, tables, progress or line/bar charts. The included
+skill and `ntfyx help send --json` expose the exact schema, limits and examples.
+
+The CLI works independently of MCP. Save [this complete six-block example](examples/rich-message.json) as `report.json`, then validate and send it:
+
+```sh
+ntfyx validate-message --message-file report.json --json
+ntfyx send --message-file report.json --session-id report-1 --dedupe-key report-1-result
+# Equivalent stdin input with identical delivery and retry metadata:
+ntfyx send --message-stdin --session-id report-1 --dedupe-key report-1-result < report.json
+```
+
+Validation needs no pairing and sends nothing. Sending requires the existing
+phone-authorized connection. JSON contains only `title`, `summary` and required
+`content`; keep Session, priority, reminder and retry options in CLI flags.
+Do not combine JSON input with `--title`, `--summary` or `--format`. For a Markdown
+file use `ntfyx send --stdin --format markdown --title "Report" < report.md`.
+`--json` controls output; it does not select JSON input.
+
+MCP uses `ntfyx_send` with either `body` or `content` plus optional `summary`, and
+`ntfyx_validate_message` for local checks. Rich titles allow 120 Unicode code
+points and summaries 240; omitted summaries are generated locally. Notifications
+show the summary, while details, search and copy retain the full content.
+The complete message, including delivery metadata, must fit 16 KiB. Content is
+display-only: no HTML execution, remote images or action buttons. Use the existing
+question tools for decisions; viewing a report does not grant execution approval.
 
 ## pi
 

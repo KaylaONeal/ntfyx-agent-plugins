@@ -34,6 +34,14 @@ Pass the host's actual session ID as `session_id` to each send/ask and use a sho
 
 Use `ntfyx_send` or `ntfyx send "Tests passed" --title "Build finished"` for an authorized completion/failure notification. Avoid a second completion notification if the host's Stop hook already sends it. Keep notifications factual and omit secrets and full logs.
 
+## Message presentation
+
+Use ordinary `body` text for short MCP notifications. For explicit plain text, Markdown, or native visual blocks, pass `content` instead of `body`, with optional `title` and plain-text `summary`. Content uses `version: 1` and `format: "text" | "markdown" | "blocks"`. Blocks support Markdown, callouts, metrics, tables, progress and line/bar charts. Choose prose for explanations, metrics for a few key values, tables for comparisons, progress for completion counts and charts for trends. These blocks display information; they do not approve or execute actions.
+
+Read `ntfyx_capabilities` with `command: "send"`, or `ntfyx help send --json`, for the exact content schema, bounded limits and a complete example. Use `ntfyx_validate_message` to check content locally before a complex send. Do not invent HTML, image, button or chart-fence formats. Keep a short useful summary for notification previews; omit it to let the CLI generate one. The entire message, including session metadata, must fit 16 KiB of UTF-8 JSON.
+
+Without MCP, send Markdown with `ntfyx send --stdin --format markdown --title "Report" < report.md`. For structured content, write JSON containing only `title`, `summary` and `content`; run `ntfyx validate-message --message-file report.json --json`, then `ntfyx send --message-file report.json --session-id SESSION --dedupe-key EVENT`. The equivalent stdin command is `ntfyx send --message-stdin --session-id SESSION --dedupe-key EVENT < report.json`. `--json` controls output, not input. Local validation requires no pairing and sends nothing. Keep delivery options outside the JSON file. After an uncertain send result, reuse the same input, delivery options and dedupe key.
+
 ## Native host behavior
 
 Claude Code's plugin bridges `AskUserQuestion` through PreToolUse. Single-choice questions use buttons plus free text; multiple questions arrive in order; multiple selections currently use a text reply listing option numbers. When that native hook is handling a question, do not send a duplicate MCP question.

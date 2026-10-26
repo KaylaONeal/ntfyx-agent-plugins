@@ -1,7 +1,7 @@
 {
   "name": "ntfyx",
-  "version": "0.2.1",
-  "description": "Encrypted phone replies and Session conversations for coding agents. Get completion alerts, answer choices or text on iPhone and Android, and continue with verified replies.",
+  "version": "0.3.0",
+  "description": "Encrypted phone replies and rich task reports for coding agents. Send Markdown, metrics, tables and native charts, then continue with verified replies.",
   "author": {
     "name": "Ntfyx",
     "url": "https://ntfyx.me"
@@ -23,7 +23,7 @@
       "interface": {
         "displayName": "Ntfyx",
         "shortDescription": "Phone replies for your coding agent",
-        "longDescription": "Keep a task’s updates and questions in one encrypted conversation. Answer with buttons or text on iPhone, Android or an authorized Web Inbox. Includes local MCP and a phone-first question skill. Claude Code also bridges AskUserQuestion; Codex native question prompts are not intercepted. Requires Ntfyx CLI 0.4.1+ and a paired phone. Tool execution approvals have a separate compatibility matrix.",
+        "longDescription": "Keep a task’s updates and questions in one encrypted conversation. Answer with buttons or text on iPhone, Android or an authorized Web Inbox. Send Markdown, metrics, tables, progress and native charts from the CLI or local MCP. Includes a phone-first question skill. Claude Code also bridges AskUserQuestion; Codex native question prompts are not intercepted. Requires Ntfyx CLI 0.5.0+ and a paired phone. Tool execution approvals have a separate compatibility matrix.",
         "developerName": "Ntfyx",
         "category": "Productivity",
         "capabilities": [

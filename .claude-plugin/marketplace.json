@@ -11,9 +11,9 @@
     {
       "name": "ntfyx",
       "source": "./",
-      "description": "Answer your agent from your phone: encrypted choices, text replies and Session conversations.",
+      "description": "Encrypted phone replies and rich task reports with Markdown, metrics, tables and native charts.",
       "category": "productivity",
-      "version": "0.2.1"
+      "version": "0.3.0"
     }
   ]
 }
