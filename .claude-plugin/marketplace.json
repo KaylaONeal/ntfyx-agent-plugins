@@ -5,15 +5,15 @@
     "url": "https://ntfyx.me"
   },
   "metadata": {
-    "description": "Private phone replies and task conversations for Claude Code and Codex."
+    "description": "Public Topic notifications and private phone replies for Claude Code and Codex."
   },
   "plugins": [
     {
       "name": "ntfyx",
       "source": "./",
-      "description": "Encrypted phone replies and rich task reports with Markdown, metrics, tables and native charts.",
+      "description": "Public Topics, usage and native rich reports; paired encrypted questions keep verified replies.",
       "category": "productivity",
-      "version": "0.3.0"
+      "version": "0.4.0"
     }
   ]
 }

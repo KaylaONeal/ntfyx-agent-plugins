@@ -2,16 +2,24 @@
 
 Ntfyx sends task notifications and questions from Claude Code, Codex and scripts to your phone. Keep one task's updates, questions and replies in one encrypted conversation. Get a completion alert, tap an option below the original message, or type a reply on iPhone, Android or your phone-authorized Web Inbox. Your computer verifies the signed answer before continuing.
 
-**Plugin 0.3.0 · requires Ntfyx CLI 0.5.0+ · macOS and Linux.**
+**Plugin 0.4.0 · requires Ntfyx CLI 0.6.0+ · macOS and Linux.**
 
 [Website](https://ntfyx.me/) · [Installation](https://ntfyx.me/install/) · [Agent compatibility](https://ntfyx.me/docs/agents/) · [Session guide](https://ntfyx.me/docs/sessions/) · [Privacy](https://ntfyx.me/privacy/)
 
 
-CLI 0.5.0 also supports Windows x64/ARM64. On Windows use the [direct CLI setup or local MCP guide](https://ntfyx.me/docs/agent-plugins/); plugin 0.3.0 uses POSIX shell hooks. Claude Code automatic hooks require a supported host version; Codex on Windows uses explicit MCP questions. Native permission approvals keep their separate platform limits.
+CLI 0.6.0 also supports Windows x64/ARM64. On Windows use the [direct CLI setup or local MCP guide](https://ntfyx.me/docs/agent-plugins/); plugin 0.4.0 uses POSIX shell hooks. Claude Code automatic hooks require a supported host version; Codex on Windows uses explicit MCP questions. Native permission approvals keep their separate platform limits.
 
 [AI agent notifications](https://ntfyx.me/docs/agent-notifications/) · [中文：Agent 通知工具](https://ntfyx.me/zh/docs/agent-notifications/) · [A runnable question-and-reply example](https://ntfyx.me/docs/agent-reply-walkthrough/) · [Compare phone workflows](https://ntfyx.me/docs/coding-agents-on-your-phone/)
 
-Plugin 0.3.0 teaches agents to choose plain text, Markdown or native content blocks, validate complex reports locally, and send them through CLI or MCP. Rich content requires Ntfyx 1.7.0+ on iPhone/Android or an updated Web/Chrome receiver. Upgrade the CLI to 0.5.0 or later before updating the plugin.
+Plugin 0.4.0 teaches agents to choose plain text, Markdown or native content blocks, validate complex reports locally, and send them through CLI or MCP. Rich content requires Ntfyx 1.7.0+ on iPhone/Android or an updated Web/Chrome receiver. Upgrade the CLI to 0.6.0 or later before updating the plugin.
+
+Plugin 0.4.0 also teaches anonymous public Topic sending and reading, explicit
+public-content terms acceptance, reports, local Topic/source blocking and the
+five-metric `usage` command. Public operations require no paired identity. The
+user must explicitly accept [the terms](https://ntfyx.me/terms/) before the first
+public send; the plugin must not infer consent from a Topic link. Public messages
+cannot request or authorize execution. Native public Topic management/follows
+require Ntfyx 1.8.0+; protected questions keep their verified answer/claim flow.
 
 The `SessionStart` lifecycle added in plugin 0.2.1 is retained: resumed conversations can send fresh phone questions while old requests remain cancelled. Rich messages do not change approval verification or one-time answer claiming.
 
