@@ -23,7 +23,7 @@
   "interface": {
     "displayName": "Ntfyx",
     "shortDescription": "Phone replies for your coding agent",
-    "longDescription": "Keep a task’s updates and questions in one encrypted conversation. Answer with buttons or text on iPhone, Android or an authorized Web Inbox. Send Markdown, metrics, tables, progress and native charts from the CLI or local MCP. Includes a phone-first question skill. Claude Code also bridges AskUserQuestion; Codex native question prompts are not intercepted. Requires Ntfyx CLI 0.6.0+; protected messages and questions require phone pairing. Public Topic sends need explicit terms acceptance and support reports and local blocking. Tool execution approvals have a separate compatibility matrix.",
+    "longDescription": "Protected Topics keep a task’s updates and questions in one end-to-end encrypted conversation. Answer with buttons or text on iPhone, Android or an authorized Web Inbox. Send Markdown, metrics, tables, progress and native charts from the CLI or local MCP. Includes a phone-first question skill. Claude Code also bridges AskUserQuestion; Codex native question prompts are not intercepted. Requires Ntfyx CLI 0.6.0+; protected messages and questions require Ntfyx 1.8.0+ phone pairing with a protected Topic. Public Topic messages are visible to the service and anyone with the Topic ID, require no pairing, and need explicit terms acceptance before sending. Reports and local blocking are supported. Tool execution approvals have a separate compatibility matrix.",
     "developerName": "Ntfyx",
     "category": "Productivity",
     "capabilities": [
