@@ -1,34 +1,78 @@
 # Ntfyx — AI Agent Notifications & Phone Replies
 
-Ntfyx sends task notifications and questions from Claude Code, Codex and scripts to your phone. Protected Topics keep one task's updates, questions and replies in one end-to-end encrypted conversation. Get a completion alert, tap an option below the original message, or type a reply on iPhone, Android or your phone-authorized Web Inbox. Your computer verifies the signed answer before continuing.
+Get task notifications from Claude Code or Codex on your phone, answer a question, and let the waiting agent continue with your verified reply.
 
-**Plugin 0.4.0 · requires Ntfyx CLI 0.6.0+ · macOS and Linux.**
+**[Let your agent set it up → install.md](install.md)** · **[中文教程](README.zh-CN.md)**
 
-[Website](https://ntfyx.me/) · [Installation](https://ntfyx.me/install/) · [Agent compatibility](https://ntfyx.me/docs/agents/) · [Session guide](https://ntfyx.me/docs/sessions/) · [Privacy](https://ntfyx.me/privacy/)
+**Download the phone app:** [iPhone / App Store](https://apps.apple.com/app/id6817353404) · [Android / Google Play](https://play.google.com/store/apps/details?id=me.ntfyx.app) · [All downloads](https://ntfyx.me/download/)
 
+**Plugin 0.4.1 · requires Ntfyx CLI 0.6.0+ and phone app 1.8.0+ for private phone replies · macOS / Linux plugin hooks.** These are separate versions: plugin 0.4.0 was the previous plugin release, not an outdated copy of CLI 0.6.0. Updating the marketplace does not update the CLI or phone app.
 
-CLI 0.6.0 also supports Windows x64/ARM64. On Windows use the [direct CLI setup or local MCP guide](https://ntfyx.me/docs/agent-plugins/); plugin 0.4.0 uses POSIX shell hooks. Claude Code automatic hooks require a supported host version; Codex on Windows uses explicit MCP questions. Native permission approvals keep their separate platform limits.
+## Already installed? Start here
 
-[AI agent notifications](https://ntfyx.me/docs/agent-notifications/) · [中文：Agent 通知工具](https://ntfyx.me/zh/docs/agent-notifications/) · [A runnable question-and-reply example](https://ntfyx.me/docs/agent-reply-walkthrough/) · [Compare phone workflows](https://ntfyx.me/docs/coding-agents-on-your-phone/)
+Paste this into your agent:
 
-Plugin 0.4.0 teaches agents to choose plain text, Markdown or native content blocks, validate complex reports locally, and send them through CLI or MCP. For this release, pair with Ntfyx 1.8.0+ on iPhone/Android and select a protected Topic, or use an updated Web/Chrome receiver. Upgrade the CLI to 0.6.0 or later before updating the plugin.
+> Follow https://github.com/KaylaONeal/ntfyx-agent-plugins/blob/main/install.md to set up Ntfyx and connect my phone. Do the computer steps for me, walk me through the phone steps, then verify a notification and my actual phone reply.
 
-Plugin 0.4.0 also teaches anonymous public Topic sending and reading, explicit
-public-content terms acceptance, reports, local Topic/source blocking and the
-five-metric `usage` command. Public operations require no paired identity. Public messages are visible to the
-service and anyone who knows the Topic ID; they are not end-to-end encrypted. The
-user must explicitly accept [the terms](https://ntfyx.me/terms/) before the first
-public send; the plugin must not infer consent from a Topic link. Public messages
-cannot request or authorize execution. Native public Topic management/follows
-require Ntfyx 1.8.0+; protected questions keep their verified answer/claim flow.
+The guide tells the agent to check what is already installed, preserve your existing connection, show App Store / Google Play links, start pairing, and wait for your test reply. You only need to download/open the phone app, scan, confirm and answer. No API key or cloud MCP endpoint is needed.
 
-The `SessionStart` lifecycle added in plugin 0.2.1 is retained: resumed conversations can send fresh phone questions while old requests remain cancelled. Rich messages do not change approval verification or one-time answer claiming.
+After restarting Claude Code, you can also run **`/ntfyx:setup`**. In Codex versions with plugin setup, use Ntfyx's setup entry; otherwise use the prompt above. Plugin installation alone does not install the companion CLI or pair a phone.
 
-For Codex, use Ntfyx MCP or CLI for decisions, choices and clarification questions. Its native `request_user_input` and `request_user_input_async` prompts are not automatically forwarded by the execution-permission hooks. Tell Codex once: **“Use Ntfyx for questions that need my decision; keep explanations in this chat.”** A working completion notification alone does not verify phone questions; complete the test question after installation.
+## Install from the Ntfyx marketplace
 
-## One command to get started
+Choose your host. Run these commands in your terminal:
 
-For protected notifications and phone replies, choose your agent. The installer verifies the CLI signature, guides you through pairing with Ntfyx 1.8.0+ and a protected Topic, then installs the MCP configuration, hooks and phone-reply skill. Restart your agent afterwards.
+```sh
+# Codex
+codex plugin marketplace add KaylaONeal/ntfyx-agent-plugins
+codex plugin add ntfyx@ntfyx
+
+# Claude Code
+claude plugin marketplace add KaylaONeal/ntfyx-agent-plugins
+claude plugin install ntfyx@ntfyx
+```
+
+`marketplace add` adds the source; the second command installs the plugin. In Claude Code, the in-chat equivalents are `/plugin marketplace add KaylaONeal/ntfyx-agent-plugins` and `/plugin install ntfyx@ntfyx`. Restart the host, then use the guided setup above. These commands install from the public Ntfyx marketplace; they do not imply inclusion in an OpenAI or Anthropic curated directory.
+
+## What setup looks like
+
+1. **Open the phone app.** Install Ntfyx from the links above and complete its welcome screens. Allow notifications for background alerts.
+2. **Install the CLI on the computer.** The agent checks `ntfyx version --json`, installs it if missing, and keeps an existing compatible installation.
+3. **Connect the phone.** The agent starts `ntfyx connect`. Keep it running. On the phone open **Add Topic (+) → Connect private Topic → Scan connection code**, scan the computer's QR, name the private Topic, and confirm/save. For an existing private Topic, use **Connect private Topic** in its settings. Private/protected Topics carry verified questions; public Topics do not.
+4. **Restart the agent.** The new session loads the plugin and local MCP tools. In Codex, review `/hooks` for native completion/permission hooks. Resume with: **“Continue Ntfyx setup and test my phone connection.”**
+5. **Receive and reply.** The agent sends one notification and one harmless question. Open the message in Ntfyx, type a short test reply and send it. Setup is verified when the agent reports your actual reply in its chat.
+
+If the terminal cannot display the QR, open the local `file://…/connect.html` page printed by `ntfyx connect` on the same computer. This page is private; do not upload it. `ntfyx doctor --json` checks pairing and service access. A successful send is not proof that a phone notification was displayed.
+
+## Use it in everyday work
+
+Tell your agent:
+
+> Send me a Ntfyx notification when the tests finish.
+
+> Use Ntfyx for questions that need my decision; keep explanations in this chat.
+
+Keep the agent session running while you answer. The phone reply returns to the waiting request; it does not start a new agent session. Codex must use Ntfyx MCP/CLI questions: its native `request_user_input` and `request_user_input_async` are not forwarded by execution-permission hooks. Claude Code also includes the existing `AskUserQuestion` bridge.
+
+## Update an existing installation
+
+```sh
+# Codex: refresh the marketplace, then install its current plugin
+codex plugin marketplace upgrade ntfyx
+codex plugin add ntfyx@ntfyx
+codex plugin list --json
+
+# Claude Code
+claude plugin marketplace update ntfyx
+claude plugin update ntfyx@ntfyx
+claude plugin list --json
+```
+
+Restart the agent afterwards. `ntfyx version --json` checks the separate CLI version; `ntfyx upgrade` updates that CLI. Finish pending phone questions before upgrading it. Updating the plugin preserves the phone pairing; do not reset the phone or delete credentials to refresh a marketplace version.
+
+## Alternative: direct CLI setup
+
+If you prefer direct integration instead of the marketplace plugin, install the phone app first, then choose one command:
 
 ```sh
 # Claude Code
@@ -38,41 +82,9 @@ curl -fsSL https://ntfyx.me/install.sh | bash -s -- --agent claude-code
 curl -fsSL https://ntfyx.me/install.sh | bash -s -- --agent codex
 ```
 
-Use `--agent both` to explicitly configure both installed agents. The phone must authorize the connection. Codex hook trust is reviewed in `/hooks`; setup does not bypass host permission policies. Ask your agent: **“Use Ntfyx to ask me a test question on my phone.”** Configuration is complete when the installer succeeds; phone delivery is verified after an actual answer returns.
+Use one integration method per host to avoid duplicate hooks. If switching from existing direct setup to a plugin, `ntfyx setup claude-code --remove` or `ntfyx setup codex --remove` removes that CLI-managed integration and preserves phone credentials. Do not run these removal commands for an ordinary plugin update.
 
-This direct setup is an alternative to marketplace installation below. Use one method per host to avoid duplicate hooks. To switch to the plugin, remove the CLI-managed integration with `ntfyx setup claude-code --remove` or `ntfyx setup codex --remove` first; this preserves paired phone credentials.
-
-## Install from the Ntfyx marketplace
-
-Install or upgrade the CLI. For protected notifications and questions, connect Ntfyx 1.8.0+ and select a protected Topic. Public Topic links can be used without a phone or pairing:
-
-```sh
-curl -fsSL https://ntfyx.me/install.sh | bash
-export PATH="$HOME/.local/bin:$PATH"
-ntfyx connect # Protected Topics and phone replies only
-```
-
-### Claude Code
-
-Run in a terminal:
-
-```sh
-claude plugin marketplace add KaylaONeal/ntfyx-agent-plugins
-claude plugin install ntfyx@ntfyx
-```
-
-Inside Claude Code, the same commands are `/plugin marketplace add KaylaONeal/ntfyx-agent-plugins` and `/plugin install ntfyx@ntfyx`. Restart the host to load the plugin. Update with `/plugin marketplace update ntfyx` followed by `/plugin update ntfyx@ntfyx`.
-
-### Codex
-
-```sh
-codex plugin marketplace add KaylaONeal/ntfyx-agent-plugins
-codex plugin add ntfyx@ntfyx
-```
-
-Restart Codex and review the two execution-approval/completion hooks with `/hooks`. To refresh the marketplace, run `codex plugin marketplace upgrade ntfyx`, then reinstall the plugin. In desktop, select the **Ntfyx · Phone replies** marketplace source.
-
-These commands add the publicly hosted **Ntfyx marketplace**. They do not mean the plugin is listed in Anthropic's curated marketplace or OpenAI's universal public directory. Directory review and eligibility are separate.
+CLI 0.6.0 also supports Windows x64/ARM64. Windows uses the [direct CLI or local MCP guide](https://ntfyx.me/install/); this marketplace plugin's hooks use POSIX shell. Native execution approval keeps its [separate compatibility limits](https://ntfyx.me/docs/agents/).
 
 ## What works
 
@@ -145,12 +157,10 @@ Deny, timeout, cancellation, verification failure and already-consumed answers a
 
 The plugin configuration, hooks and skills in this repository are MIT licensed. The Ntfyx application, companion CLI and hosted relay are separate products with their own license and service terms. This repository does not publish the application's core source or provide a supported self-hosting package. Install the signed CLI to use the local MCP server. Protected messages and questions also require phone pairing; public Topic operations do not. This is not a standalone hosted connector.
 
-## 中文说明
+## 中文教程
 
-Ntfyx 是 AI Agent 任务通知与手机回复工具，受保护 Topic 把 Claude Code、Codex 和脚本的任务通知、问题和回复放进同一个端到端加密会话。公开 Topic 无需手机或配对，服务端及知道 Topic 标识的人都能读取消息，不支持应答或执行授权。手机上直接点选按钮或引用问题输入，电脑校验签名后继续。支持 iPhone、Android 和手机授权的 Web 收件箱。
+**[完整中文教程](README.zh-CN.md)** · **[给 Agent 的一步步安装指引](install.md)**
 
-上面的一键命令会完成 CLI 安装、扫码连接与 Agent 配置；也可以选择插件市场安装，两种方式每个 Agent 选一种。Claude 原生 AskUserQuestion 已加入问答桥接；Codex 通过 MCP 主动提问，暂不接管原生提问。执行权限审批有独立的平台和版本范围。公开 GitHub 市场可安装，不代表已被官方公共目录收录。
-
-[安装与说明](https://ntfyx.me/install/) · [中文会话指南](https://ntfyx.me/zh/docs/sessions/) · [中文插件说明](https://ntfyx.me/zh/docs/agent-plugins/)
+把 `install.md` 的链接发给 Codex 或 Claude Code，让它检查安装状态、给出 App 下载链接、启动配对，并验证手机回复。插件 0.4.1、CLI 0.6.0 和手机 App 独立编号；插件安装后仍需连接手机。
 
 本仓库的插件配置、Hook 与 Skill 采用 MIT 许可；App、配套 CLI 和托管中继遵循独立许可与服务条款。这里不提供应用核心源码或受支持的自托管发行。

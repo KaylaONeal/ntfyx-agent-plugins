@@ -7,7 +7,7 @@ description: Send encrypted notifications and collect verified phone replies wit
 
 Ntfyx connects this computer to the user's iPhone or Android phone. Use the available `ntfyx_ask` MCP tool for questions that need the user's input: requirements, choices, missing information, and approvals that are actually needed. Preserve existing authorization; installing this plugin does not require asking again before every action. If the user chooses the current chat, use that channel.
 
-Check `ntfyx doctor` when connection status is unknown. If not installed or paired, explain the prerequisite and link https://ntfyx.me/install/. The user must scan and authorize their own connection. Never upload pairing links or credentials. No cloud MCP endpoint is required: encryption and answer verification run locally.
+Check `ntfyx doctor` when connection status is unknown. If not installed or paired, keep guidance in this chat: first link the phone App downloads at https://ntfyx.me/download/, then explain CLI installation and `ntfyx connect`. When the plugin's setup skill is available, use `../setup/SKILL.md` for the complete walkthrough; standalone CLI installations can use https://ntfyx.me/install/. The user must scan and authorize their own connection. Never upload pairing links or credentials. No cloud MCP endpoint is required: encryption and answer verification run locally.
 
 ## Ask and receive an answer
 

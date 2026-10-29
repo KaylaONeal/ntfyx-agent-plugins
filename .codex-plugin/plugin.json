@@ -1,6 +1,6 @@
 {
   "name": "ntfyx",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Public Topic notifications, rich task reports and verified encrypted phone replies for coding agents. Public sending needs explicit terms acceptance; protected questions use phone pairing.",
   "author": {
     "name": "Ntfyx",
@@ -23,7 +23,7 @@
   "interface": {
     "displayName": "Ntfyx",
     "shortDescription": "Phone replies for your coding agent",
-    "longDescription": "Protected Topics keep a task’s updates and questions in one end-to-end encrypted conversation. Answer with buttons or text on iPhone, Android or an authorized Web Inbox. Send Markdown, metrics, tables, progress and native charts from the CLI or local MCP. Includes a phone-first question skill. Claude Code also bridges AskUserQuestion; Codex native question prompts are not intercepted. Requires Ntfyx CLI 0.6.0+; protected messages and questions require Ntfyx 1.8.0+ phone pairing with a protected Topic. Public Topic messages are visible to the service and anyone with the Topic ID, require no pairing, and need explicit terms acceptance before sending. Reports and local blocking are supported. Tool execution approvals have a separate compatibility matrix.",
+    "longDescription": "Start with guided setup: download the phone app, connect this computer, and verify your first phone reply. Protected Topics keep a task’s updates and questions in one end-to-end encrypted conversation. Answer with buttons or text on iPhone, Android or an authorized Web Inbox. Send Markdown, metrics, tables, progress and native charts from the CLI or local MCP. Includes a phone-first question skill. Claude Code also bridges AskUserQuestion; Codex native question prompts are not intercepted. Requires Ntfyx CLI 0.6.0+; protected messages and questions require Ntfyx 1.8.0+ phone pairing with a protected Topic. Public Topic messages are visible to the service and anyone with the Topic ID, require no pairing, and need explicit terms acceptance before sending. Reports and local blocking are supported. Tool execution approvals have a separate compatibility matrix.",
     "developerName": "Ntfyx",
     "category": "Productivity",
     "capabilities": [
@@ -35,8 +35,14 @@
     "logo": "./assets/logo.svg",
     "supportURL": "https://ntfyx.me/support/",
     "defaultPrompt": [
+      "Help me set up Ntfyx, download the phone app, and connect my phone.",
       "Ask me a test question on my phone with Ntfyx.",
       "Keep this task’s updates and questions in one Ntfyx Session."
     ]
+  },
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/setup/SKILL.md"
+    }
   }
 }

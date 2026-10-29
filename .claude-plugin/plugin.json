@@ -1,6 +1,6 @@
 {
   "name": "ntfyx",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Public Topic notifications, rich task reports and verified encrypted phone replies for coding agents. Public sending needs explicit terms acceptance; protected questions use phone pairing.",
   "author": {
     "name": "Ntfyx",
